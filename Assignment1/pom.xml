@@ -53,8 +53,19 @@
     			<artifactId>aws-java-sdk</artifactId>
     			<version>1.11.163</version>
 		</dependency>
-
-
+		<!-- Spring Data -->
+		<dependency>
+    			<groupId>org.springframework.boot</groupId>
+    			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		
+		<!-- MySql Connector -->
+		<!-- <dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+ -->
 
 
 		<dependency>

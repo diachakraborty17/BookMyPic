@@ -1,6 +1,9 @@
 package com.example.demo;
 import java.io.IOException;
 import java.util.*;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,11 +29,35 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 public class HomeController {
 	
 	//code not required
-	@GetMapping(value="/uploadPage")
+	@GetMapping(value="/")
 	public ModelAndView renderPage() {
 	ModelAndView indexPage = new ModelAndView();
-	indexPage.setViewName("Index");
+	indexPage.setViewName("index");
 	return indexPage;
+	}
+	
+	//getting facebook index page
+	@GetMapping(value="/facebook")
+	public ModelAndView renderFacebook() {
+	ModelAndView facebookIndex = new ModelAndView();
+	facebookIndex.setViewName("facebookIndex");
+	return facebookIndex;
+	}
+	
+	@PostMapping(value="/facebookRedirect")
+	public ModelAndView handleRedirect(
+			@RequestParam(name="myId") String myId,
+			@RequestParam(name="myName") String myName,
+			@RequestParam(name="myFriends") String myFriends,
+			@RequestParam(name="myEmail") String myEmail,
+			HttpServletRequest req
+			) {
+		System.out.println(myId+myName+myEmail+myFriends);
+		String[] splitted = myFriends.split("/");
+		for(int i = 0;i<splitted.length;i++) {
+			System.out.println(i+" : " +splitted[i]);
+		}
+		return new ModelAndView("allProfiles");
 	}
 	
 	@PostMapping(value="/profilePage")
